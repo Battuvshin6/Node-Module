@@ -1,1 +1,5 @@
-function ex4(a, b) {}
+function ex4(a, b) {
+    if () {
+        
+    }
+}
