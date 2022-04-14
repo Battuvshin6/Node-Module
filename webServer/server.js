@@ -1,6 +1,6 @@
 let http = require("http");
 http
-  .createServer(function (requiest, response) {
+  .createServer(function (request, response) {
     response.writeHead(200);
     response.write("<h1>Hello Node !!!!</h1>\n");
     response.end();
