@@ -6,7 +6,6 @@ http
       if (error) {
         throw error;
       } else {
-        console.log(data);
         response.end(data);
       }
     });
