@@ -1,6 +1,6 @@
-var https = require("https");
-var http = require("http");
-var fs = require("fs");
+let https = require("https");
+let http = require("http");
+let fs = require("fs");
 
 http
   .createServer(function (req, res) {
@@ -24,7 +24,7 @@ http
               news1.map((e) => {
                 content =
                   content +
-                  `<tr ><td >${e.title}</td> <td ><img style=' width: 100px' src="${e.image}"/></td></tr>`;
+                  []`<tr ><td >${e.title}</td> <td ><img style=' width: 100px' src="${e.image}"/></td></tr>`;
               });
               const result = tableBegin + content + tableEnd;
               res.end(result);
