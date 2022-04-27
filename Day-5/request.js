@@ -1,4 +1,4 @@
-const { fstat } = require("fs");
+const fs = require("fs");
 var http = require("https");
 http
   .get("https://dev-api.mstars.mn/api/foods", (response) => {
