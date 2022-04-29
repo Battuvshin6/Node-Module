@@ -1,0 +1,25 @@
+{
+  "name": "node-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "match-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Battuvshin6/Node-Module.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Battuvshin6/Node-Module/issues"
+  },
+  "homepage": "https://github.com/Battuvshin6/Node-Module#readme",
+  "dependencies": {
+    "cvs": "^0.6.8",
+    "express": "^4.18.0",
+    "request": "^2.88.2"
+  }
+}
