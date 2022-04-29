@@ -1,5 +1,11 @@
 const request = require("request");
-request("https://ghibliapi.herokuapp.com/films", function (response, body) {
-  console.log("statusCode:", response && response.statusCode);
-});
-console.log(request);
+
+function requestFunction(str) {
+  request("https://ghibliapi.herokuapp.com/films", (error, response, body) => {
+    const data = JSON.parse(body);
+    console.log(data);
+  });
+}
+
+requestFunction();
+module.exports = requestFunction;
