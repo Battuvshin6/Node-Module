@@ -1,7 +1,8 @@
-let fs = require("fs");
-let express = require("express");
-let app = express();
+const express = require("express");
+const fs = require("fs");
+
+const app = express();
 app.get("/get-data", (req, res) => {
-  app.send(fs.createReadStream);
-});
-app.listen(3000);
+  const data = fs.createReadStream()
+  
+}
