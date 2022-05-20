@@ -1,3 +1,4 @@
+const e = require("express");
 const express = require("express");
 const app = express();
 const mysql = require("mysql2");
@@ -45,18 +46,47 @@ app.get("/employees", (req, res) => {
   );
 });
 
-app
-  .get("/managers/salary", (req, res) => {
-    connection.query(
-      `select sum(salary) as managerSalary from dept_manager d left join salaries s on d.emp_no=s.emp_no`,
-      (err, rows, field) => {
-        if (!err) {
-          res.send(rows);
-        } else {
-          res.send(err);
-        }
+app.get("/managers/salary", (req, res) => {
+  connection.query(
+    `select sum(salary) as managerSalary from dept_manager d left join salaries s on d.emp_no=s.emp_no`,
+    (err, rows, field) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
       }
-    );
+    }
+  );
+});
+app.put("/departments", (req, res) => {
+  connection.query(`lock table departments read`);
+  connection.query(`select * from departments;`, (err, rows, field) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      res.send(err);
+    }
+  });
+});
+app.get("/dept_emp", (req, res) => {
+  connection.query("select * from depmt_emp", (err, rows, field) => {
+    if (!err) {
+      res.send(rows);
+    } else {
+      res.send(err);
+    }
+  });
+});
+
+app
+  .get("/unlock", (res, req) => {
+    connection.query("unlock tables", (err, field) => {
+      if (!err) {
+        res.send("unlocked");
+      } else {
+        res.send(err);
+      }
+    });
   })
   .listen(3000, () => {
     console.log("Server is working at 3000");
