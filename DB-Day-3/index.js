@@ -31,18 +31,44 @@ app.put("/employees", (req, res) => {
     }
   );
 });
+app.get("/employee", (req, res) => {
+  connection.query(
+    `select employeenumber,phone from employees e left join offices o on e.officecode=o.officecode`,
+    (err, rows, field) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
+      }
+    }
+  );
+});
+app.get("/orders", (req, res) => {
+  const orderNumber = req.query.orderNumber;
+  connection.query(
+    `select * from (select * from orders where ordernumber= ${orderNumber} o left join orderdetails a using (ordernumber)`
+  ),
+    (err, rows, field) => {
+      if (!err) {
+        res.send(rows);
+      } else {
+        res.send(err);
+      }
+    };
+});
 app
-  .get("/employee", (req, res) => {
+  .put("/order", (req, res) => {
+    const orderNumber = req.query.orderNumber;
     connection.query(
-      `select employeenumber,phone from employees e left join offices o on e.officecode=o.officecode`,
+      `update orders set requiredDate = "${req.body.requiredDate}" where orderNumber=${orderNumber}`
+    ),
       (err, rows, field) => {
         if (!err) {
           res.send(rows);
         } else {
           res.send(err);
         }
-      }
-    );
+      };
   })
   .listen(3000, () => {
     console.log("app is starting at 3000");
